@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/components/profile_tile.dart';
+import 'package:myapp/components/users.dart'; 
+import 'content_screen.dart'; 
 
 class ProfileSelectionScreen extends StatelessWidget {
   const ProfileSelectionScreen({super.key});
+
+  void _onProfileTap(BuildContext context, User user) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ContentScreen(user: user),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +22,13 @@ class ProfileSelectionScreen extends StatelessWidget {
       appBar: AppBar(
         title: Image.asset(
           'assets/netflix_logo.png',
-          height: 40, // Ajustar conforme necessário
+          height: 40,
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 20.0), // Espaço adicional para o ícone
+            padding: const EdgeInsets.only(right: 20.0), 
             child: IconButton(
-              icon: const Icon(Icons.edit, color: Colors.white, size: 20.0), // Ícone menor sem contorno
+              icon: const Icon(Icons.edit, color: Colors.white, size: 20.0), 
               onPressed: () {
                 // Implementação futura para editar os perfis
               },
@@ -51,17 +62,15 @@ class ProfileSelectionScreen extends StatelessWidget {
                 Expanded(
                   child: GridView.count(
                     crossAxisCount: columns,
-                    crossAxisSpacing: 5.0, // Reduzido o espaço horizontal entre os itens
+                    crossAxisSpacing: 5.0, 
                     mainAxisSpacing: 10.0,
-                    childAspectRatio: 1, // Ajuste a proporção das células
-                    children: const [
-                      ProfileTile(name: 'João', imageUrl: 'assets/profile1.png'),
-                      ProfileTile(name: 'Parasita 1', imageUrl: 'assets/profile2.png'),
-                      ProfileTile(name: 'Professor', imageUrl: 'assets/profile3.png'),
-                      ProfileTile(name: 'Mãe', imageUrl: 'assets/profile4.png'),
-                      ProfileTile(name: 'Vizinha', imageUrl: 'assets/profile5.png'),
-                      // Add other profiles here
-                    ],
+                    childAspectRatio: 1, 
+                    children: users.map((user) {
+                      return GestureDetector(
+                        onTap: () => _onProfileTap(context, user),
+                        child: ProfileTile(user: user),
+                      );
+                    }).toList(),
                   ),
                 ),
               ],

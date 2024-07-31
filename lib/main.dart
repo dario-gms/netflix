@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/users.dart';
 import 'package:myapp/screens/logo_screen.dart';
 import 'package:myapp/screens/profile_screen.dart';
 import 'package:myapp/screens/content_screen.dart';
@@ -22,7 +23,15 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const NetflixLogoScreen(),
         '/profiles': (context) => const ProfileSelectionScreen(),
-        '/content': (context) => const ContentScreen(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == '/content') {
+          final user = settings.arguments as User;
+          return MaterialPageRoute(
+            builder: (context) => ContentScreen(user: user),
+          );
+        }
+        return null;
       },
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/screens/content_screen.dart';
+import 'package:myapp/components/users.dart';
 
 class ProfileTile extends StatelessWidget {
-  final String name;
-  final String imageUrl;
+  final User user;
 
-  const ProfileTile({super.key, required this.name, required this.imageUrl});
+  const ProfileTile({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class ProfileTile extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const ContentScreen()),
+          MaterialPageRoute(builder: (context) => ContentScreen(user: user)),
         );
       },
       child: Column(
@@ -23,15 +23,15 @@ class ProfileTile extends StatelessWidget {
             height: 100,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(imageUrl),
+                image: AssetImage(user.imageUrl),
                 fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.circular(8.0), 
+              borderRadius: BorderRadius.circular(8.0),
             ),
           ),
           const SizedBox(height: 8.0),
           Text(
-            name,
+            user.name,
             style: const TextStyle(color: Colors.white),
           ),
         ],
