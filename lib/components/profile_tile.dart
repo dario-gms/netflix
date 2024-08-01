@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/screens/content_screen.dart';
-import 'package:myapp/components/users.dart';
+import 'package:myapp/models/users.dart';
 
 class ProfileTile extends StatelessWidget {
   final User user;

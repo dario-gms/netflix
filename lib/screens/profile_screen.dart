@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/components/profile_tile.dart';
-import 'package:myapp/components/users.dart'; 
+import 'package:myapp/models/users.dart'; 
 import 'content_screen.dart'; 
 
 class ProfileSelectionScreen extends StatelessWidget {
@@ -50,7 +50,7 @@ class ProfileSelectionScreen extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    'Quem está assistindo?',
+                    'Who\'s Watching?',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,

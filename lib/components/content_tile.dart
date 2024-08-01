@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'categories_dropdown.dart';
 
 class ContentTile extends StatelessWidget {
   final String title;
@@ -7,6 +8,7 @@ class ContentTile extends StatelessWidget {
   final bool showTitleAndDescription;
   final bool showPlayButtonOnly;
   final bool isRoundPlayButton;
+  final bool showFullOverlay;
 
   const ContentTile({
     super.key,
@@ -16,6 +18,7 @@ class ContentTile extends StatelessWidget {
     this.showTitleAndDescription = true,
     this.showPlayButtonOnly = false,
     this.isRoundPlayButton = false,
+    this.showFullOverlay = false,
   });
 
   @override
@@ -28,62 +31,86 @@ class ContentTile extends StatelessWidget {
               imageUrl,
               fit: BoxFit.cover,
               width: double.infinity,
-              height: 200,
+              height: 300,
             ),
-            if (!showPlayButtonOnly)
+            if (showFullOverlay)
               Positioned(
-                bottom: 10,
-                left: 10,
-                child: Row(
+                bottom: 20,
+                left: 20,
+                right: 20,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
                       ),
-                      icon: Icon(
-                        isRoundPlayButton ? Icons.play_circle_filled : Icons.play_arrow,
-                        color: Colors.black,
-                      ),
-                      label: const Text(
-                        'Play',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () {},
                     ),
-                    const SizedBox(width: 8),
-                    Column(
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Column(
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.add, color: Colors.white, size: 35,),
+                              onPressed: () {},
+                            ),
+                            const Text(
+                              'My List',
+                              style: TextStyle(color: Colors.white, fontSize: 15), 
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 50),
                         ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                           ),
-                          icon: const Icon(Icons.add, color: Colors.black),
+                          icon: const Icon(
+                            Icons.play_arrow,
+                            color: Colors.black,
+                          ),
                           label: const Text(
-                            'Minha Lista',
+                            'Play',
                             style: TextStyle(color: Colors.black),
                           ),
                           onPressed: () {},
                         ),
-                        const SizedBox(height: 4),
-                      ],
-                    ),
-                    const SizedBox(width: 8),
-                    Column(
-                      children: [
-                        ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                          ),
-                          icon: const Icon(Icons.info_outline, color: Colors.black),
-                          label: const Text(
-                            'Info',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          onPressed: () {},
+                        const SizedBox(width: 35),
+                        Column(
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.info_outline, color: Colors.white, size: 35,),
+                              onPressed: () {},
+                            ),
+                            const Text(
+                              'Info',
+                              style: TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 4),
                       ],
                     ),
+                  ],
+                ),
+              ),
+            if (showFullOverlay)
+              const Positioned(
+                top: 20,
+                left: 20,
+                right: 20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('TV Shows', style: TextStyle(color: Colors.white, fontSize: 20)),
+                    SizedBox(width: 20),
+                    Text('Movies', style: TextStyle(color: Colors.white, fontSize: 20)),
+                    SizedBox(width: 20),
+                    CategoriesDropdown(), // Adicionando o Dropdown
                   ],
                 ),
               ),

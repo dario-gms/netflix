@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/components/users.dart';
+import 'package:myapp/models/users.dart';
 import 'package:myapp/screens/logo_screen.dart';
 import 'package:myapp/screens/profile_screen.dart';
 import 'package:myapp/screens/content_screen.dart';
