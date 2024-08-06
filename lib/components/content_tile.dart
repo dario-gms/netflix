@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'categories_dropdown.dart';
+import 'package:myapp/components/categories_dropdown.dart';
 
 class ContentTile extends StatelessWidget {
   final String title;
