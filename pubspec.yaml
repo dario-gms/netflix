@@ -1,5 +1,5 @@
 name: myapp
-description: "A new Flutter project."
+description: "Netflix App."
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -21,14 +21,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/netflix_logo.png
-    - assets/profile1.png
-    - assets/profile2.png
-    - assets/profile3.png
-    - assets/profile4.png
-    - assets/profile5.png
-    - assets/dont_breathe.png
-    - assets/silent_sea.png
-    - assets/netflix_small_logo.png
+    - assets/
 
   
